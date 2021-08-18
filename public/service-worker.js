@@ -1,9 +1,9 @@
-const CACHE_NAME = "static-cache-v2";
+const CACHE_NAME = "static-cache-v1";
 const DATA_CACHE_NAME = "data-cache-v1";
 const FILES_TO_CACHE = [
   "/",
   "/index.html",
-  "/style.css",
+  "/styles.css",
   "/manifest.webmanifest",
   "/service-worker.js",
   "/index.js",
@@ -16,7 +16,7 @@ const FILES_TO_CACHE = [
 self.addEventListener("install", function (evt) {
   // pre cache image data
   evt.waitUntil(
-    caches.open(DATA_CACHE_NAME).then((cache) => cache.add("/api/images"))
+    caches.open(DATA_CACHE_NAME).then((cache) => cache.add("/api/transaction"))
   );
 
   // pre cache all static assets
@@ -26,6 +26,7 @@ self.addEventListener("install", function (evt) {
 
   // tell the browser to activate this service worker immediately once it
   // has finished installing
+  console.log('service worker running');
   self.skipWaiting();
 });
 
